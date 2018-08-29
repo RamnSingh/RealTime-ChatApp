@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Chat App</title>
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/tether.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/common.js"></script>
+        <script src="/js/socket.io.min.js"></script>
+        <script src="/js/bootstrap-script.js"></script>
+        <script src="/js/protip.min.js"></script>
+        <script src="/js/jemoji.min.js"></script>
+        <link rel="stylesheet" href="/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/css/font-awesome.min.css" />
+        <link  rel="stylesheet" href="/css/summernote.css" />
+        <link rel="stylesheet" href="/css/animate.css" />
+        <link rel="stylesheet" href="/css/protip.min.css" />
+        <link rel="stylesheet" href="/css/style.css" />
+    </head>
+     <body>
+
+    <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+          <div class="masthead clearfix fixed-top">
+             
+             <nav class="navbar navbar-toggleable-md navbar-inverse bg-black">
+              <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <a href="/" class="navbar-brand"><h3 class="masthead-brand">Web Chat</h3></a>
+
+              
+              {{#if user}}
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                 <form class="form-inline mr-auto ml-5 pl-3" method="GET" action="/search">
+                  <input class="form-control ml-5" type="text" placeholder="Search" name="s">
+                  <input type="hidden" value="{{user.username}}" id="loggedUsername" />
+                  <input type="hidden" value="{{user._id}}" id="loggedUserId" />
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+              {{else}}
+              <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+              {{/if}}
+                <ul class="navbar-nav">
+                  {{#if user}}
+                  <li class="nav-item dropdown mr-3">
+                    <span class="nav-link dropdown-toggle" id="navbarStatusDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Status
+                    </span>
+                    <div class="dropdown-menu" aria-labelledby="navbarStatusDropdown">
+                      <span class="dropdown-item list-group-item-success" id="active-status">{{user.status}}</span>
+                      <span id="available-status">
+                      </span>
+                      <span class="dropdown-item" style="cursor: pointer" onclick="showCustomStatusModal()">Add custom status</span>
+                    </div>
+                  </li>
+                  <li class="nav-item mr-3">
+                    <a class="nav-link" href="/chat"><i class="fa fa-weixin fa-lg"></i></a>
+                  </li>
+                  <li class="nav-item active mr-3">
+                    <span class="nav-link" id="notification-popover"><i class="fa fa-globe fa-lg" id="notification-icon"></i></span>
+                  </li>
+                   <li class="nav-item dropdown mr-5 pr-5">
+                    <span class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fa fa-user fa-lg"></i>
+                    </span>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <a class="dropdown-item" href="/user/{{user.username}}">{{user.username}}</a>
+                      <a class="dropdown-item pointer" href="/account/logout" onclick="socketDisconnect()">Logout</a>
+                    </div>
+                  </li>
+                   
+                  {{else}}
+                  <li class="nav-item mr-3">
+                    <a class="nav-link" href="/account/register">Register</a>
+                  </li>
+                  <li class="nav-item mr-3">
+                    <a class="nav-link" href="/account/login">Login</a>
+                  </li>
+                  {{/if}}
+                </ul>
+              </div>
+            </nav>
+          </div>
+
+          <div class="container-fluid h-100 clearfix">
+              {{{body}}}
+          </div>
+
+          <div class="mastfoot">
+            &copy; Copyright <b>Sarah El Aichi et l'équipe</b> all rights reserved 2017.
+          </div>
+
+          {{#if user}}
+          <script src="/js/socket-client.js"></script>
+          <script src="/js/peer.min.js"></script>
+          <script src="/js/peer-script.js"></script>
+          {{/if}}
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    {{!--Modals--}}
+    <!-- Modal for confirmations -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="confirm-box" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="confirm-box-title"></h5>
+            <button type="button add-as-friend-btn" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="confirm-box-body">
+            {{!--<p>Are you sure, you want to be friends with <span id="would-be-friend-username" class="font-weight-bold"></span> ?</p>--}}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="confirm-modal-button" onclick="onConfirm()">Yes</button>
+            <button type="button" class="btn btn-danger" id="dismiss-modal-button" data-dismiss="modal">No</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for request -->
+    <div class="modal fade" id="dialog-box" tabindex="-1" role="dialog" aria-labelledby="dialogBox" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">
+              <span id="dialog-title"></span>
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div id="dialog-body"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{!--Modal for changing status--}}
+    <div class="modal fade" tabindex="-1" role="dialog" id="change-status-modal" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Custom status</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <input type="text" class="form-control" id="custom-status-input" placeholder="Enter your custom status here" />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" onclick="addCustomStatus()">Add</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{!----}}
+  </body>
+  
+</html>

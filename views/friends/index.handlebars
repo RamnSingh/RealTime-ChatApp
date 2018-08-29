@@ -1,0 +1,35 @@
+<div class="container-tight">
+<div class="card border-0">
+  <h3 class="card-header bg-primary text-white">Your friends</h3>
+  <div class="card-block no-padding">
+    <ul class="list-group">
+        {{#each friends}}
+        <li class="list-group-item list-group-item-action justify-content-between">
+             <span>
+                <a class="text-black text-black-hover h3 none" href="/user/{{username}}">
+                    {{#if profileImage}}
+                    <img src="/profile/image/{{profileImage}}" class="img-thumbnail" width="50px" height="50px" />
+                    {{else}}
+                    <img src="/images/default_profile_image.png" class="img-thumbnail" width="50px" height="50px" />
+                    {{/if}}
+                    {{#if customUsername}}
+                        {{customUsername}}
+                    {{else}}
+                        {{username}}
+                    {{/if}}
+                </a>
+            </span>
+            <span>
+                <button class="btn btn-outline-info" id="rename-friend-{{username}}" onclick="showRenameFriendModal('{{_id}}', '{{username}}')">Rename friend</button>
+                &nbsp;
+                <button class="btn btn-outline-warning" id="remove-friend-{{username}}" onclick="showRemoveFriendModal('{{_id}}', '{{username}}')">Remove friend</button>
+                &nbsp;
+                <button class="btn btn-outline-danger" id="block-friend-{{username}}" onclick="showBlockFriendModal('{{_id}}', '{{username}}')">Block friend</button>
+            </span>
+        </li>
+        {{/each}}
+    </ul>
+  </div>
+</div>
+</div>
+<script src="/js/friendScript.js"></script>

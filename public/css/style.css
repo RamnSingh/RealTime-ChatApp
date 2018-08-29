@@ -1,0 +1,402 @@
+/*
+ * Globals
+ */
+
+/* Links */
+a,
+a:focus,
+a:hover {
+  color: #fff;
+}
+
+/* Custom default button */
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+  color: #333;
+  text-shadow: none; /* Prevent inheritance from `body` */
+  background-color: #fff;
+  border: .05rem solid #fff;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.text-white{
+  color: #fff;
+}
+.text-black{
+  color: #000;
+}
+.text-black-hover:hover{
+  color: #000;
+}
+
+.none:hover{
+  text-decoration: none;
+}
+.pointer{
+  cursor: pointer;
+}
+
+/*
+ * Base structure
+ */
+
+html,
+body {
+  height: 100%;
+  background-color: #333;
+}
+
+/*
+ * Utilities
+ */
+ .no-padding{
+   padding: 0 !important;
+ }
+ .no-margin{
+   margin: 0 !important;
+ }
+ .basic-link:hover{
+   text-decoration: none;
+ }
+ .bg-black{
+   background: #000 !important;
+ }
+
+ .file-upload {
+  position: relative;
+  overflow: hidden;
+  margin: 10px; }
+
+.file-upload input.file-input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0); }
+/* Extra markup and styles for table-esque vertical and horizontal centering */
+.site-wrapper {
+  display: table;
+  width: 100%;
+  height: 100%; /* For at least Firefox */
+  min-height: 100%;
+  -webkit-box-shadow: inset 0 0 5rem rgba(0,0,0,.5);
+          box-shadow: inset 0 0 5rem rgba(0,0,0,.5);
+}
+.site-wrapper-inner {
+  display: table-cell;
+  padding-top: 72px;
+}
+.cover-container {
+  margin-right: auto;
+  margin-left: auto;
+  height: 100% !important;
+}
+
+/* Padding for spacing */
+.inner {
+  padding: 2rem;
+}
+
+
+/*
+ * Header
+ */
+
+
+@media (min-width: 48em) {
+  .masthead-brand {
+    float: left;
+  }
+  .nav-masthead {
+    float: right;
+  }
+}
+
+
+/*
+ * Cover
+ */
+
+.cover {
+  padding: 0 1.5rem;
+}
+.cover .btn-lg {
+  padding: .75rem 1.25rem;
+  font-weight: bold;
+}
+
+
+/*
+ * Footer
+ */
+
+.mastfoot {
+  color: rgba(255,255,255,.5);
+  background-color: #000;
+  padding: 0 2rem 2rem;
+  text-align: center;
+}
+
+#register-form{
+    text-align: left;
+}
+
+/*
+ * Affix and center
+ */
+
+@media (min-width: 40em) {
+  /* Pull out the header and footer */
+  .masthead {
+    position: fixed;
+    top: 0;
+  }
+  .mastfoot {
+  }
+  /* Start the vertical centering */
+  .site-wrapper-inner {
+    padding-top: 70px;
+  }
+  /* Handle the widths */
+  .masthead,
+  .mastfoot,
+  .cover-container {
+    width: 100%; /* Must be percentage or pixels for horizontal alignment */
+  }
+  .container-tight {
+    width: 90%;
+    height: 100%;
+    margin: 120px auto;
+  }
+}
+
+@media (min-width: 20em) {
+  .container-tight {
+    margin: 120px auto;
+    height: 100% !important;
+  }
+}
+
+@media (min-width: 62em) {
+  .container-tight {
+    width: 62em;
+    margin: 80px auto;
+    height: 100% !important;
+  }
+}
+
+
+/*Homepage Style*/
+#hp-unread-messages,#hp-new-channels{
+  height: 300px;
+  overflow-y: scroll;
+}
+#hp-unread-messages::-webkit-scrollbar,#hp-new-channels::-webkit-scrollbar {
+    width: 15px;
+}
+#hp-unread-messages::-webkit-scrollbar,#hp-new-channels::-webkit-scrollbar-thumb {
+    background-color: rgba(137, 137, 138, 0.52);
+    outline: 1px solid #31b0d5;
+    border-radius: 15px;
+}
+
+/* Menu */
+.notification-popover-box{
+  min-width: 200px;
+}
+
+.notification-popover-box > a{
+  color: #000;
+}
+
+
+/*Error page*/
+.error-page-title{
+  font-size: 20em;
+}
+
+/*Chat*/
+.online-dot, .offline-dot{
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+}
+
+.online-dot{
+  background: green;
+}
+
+.offline-dot{
+  background: gray;
+}
+
+.bubble-msg {
+    padding: 15px 15px;
+    border-radius: 20px;
+    margin: 10px 20px 0px;
+}
+
+.bubble-msg-sender{
+  margin: 2px 0px 2px 25px;
+  font-size: 0.8em;
+  color: #636c72 !important;
+}
+
+.bubble-msg-emitter{
+  float: right;
+  margin: 2px 25px 2px 0px;
+  font-size: 0.8em;
+  color: #636c72 !important;
+}
+
+#message-box{
+  overflow-y: scroll;
+}
+
+#message-input-box{
+  
+}
+
+@media (max-height: 800px){
+  #message-box{
+    height: 425px;
+  }
+}
+
+@media (max-height: 700px){
+  #message-box{
+    height: 325px;
+  }
+}
+@media (max-height: 500px){
+  #message-box{
+    height: 225px;
+  }
+}
+@media (max-height: 300px){
+  #message-box{
+    height: 75px;
+  }
+}
+
+
+/* Call loader */
+.spinner {
+  margin: 100px auto;
+  width: 50px;
+  height: 40px;
+  text-align: center;
+  font-size: 10px;
+}
+
+.spinner > div {
+  background-color: #333;
+  height: 100%;
+  width: 6px;
+  display: inline-block;
+  
+  -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  animation: sk-stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spinner .rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+@-webkit-keyframes sk-stretchdelay {
+  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
+  20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes sk-stretchdelay {
+  0%, 40%, 100% { 
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+  }  20% { 
+    transform: scaleY(1.0);
+    -webkit-transform: scaleY(1.0);
+  }
+}
+
+/*Editor */
+.note-editor a, .note-editor a:hover{
+  color: #000;
+}
+.note-editable a{
+  color: #00f;
+  text-decoration: underline;
+}
+
+.note-editor a:hover{
+  text-decoration: none;
+}
+
+.note-editor blockquote{
+    border-left: 5px solid #f86466;
+    background: white;
+}
+
+/* Videos */
+#video-call-streaming-modal{
+  background: rgba(0,0,0,0.3);
+}
+#video-call-streaming-modal .modal-dialog, #remote-video-call-stream{
+  width : 720px;
+  height: 534px;
+}
+
+#video-call-streaming-modal .modal-content, #video-call-streaming-modal .modal-body {
+  width: 720px;
+  height: 700px;
+}
+
+#local-video-call-stream{
+  width: 178px;
+  height: 100px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+#remote-users-streams{
+    overflow: auto;
+    border: solid 2px #ad5d5d;
+    width: 100%;
+    position: absolute;
+    /* left: 0px; */
+    right: -120px;
+    height: 580px;
+    top: 0;
+    min-width: 100px;
+    width: 100px;
+    background: blanchedalmond;
+}
+
+#remote-users-streams video{
+  width: 100px;
+  height: 100px;
+}

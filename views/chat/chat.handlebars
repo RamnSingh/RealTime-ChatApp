@@ -1,0 +1,150 @@
+<div class="row h-100">
+  <div class="col-2">
+      <div class="card h-60">
+          <div class="card-header">
+            Friends
+        </div>
+        <div class="card-block no-padding">
+            <ul class="list-group" id="friendsList">
+
+            </ul>
+        </div>
+    </div>
+    <div class="card h-20">
+      <div class="card-header">
+        Groups
+      </div>
+      <div class="card-block no-padding">
+        <ul class="list-group" id="groupsList">
+
+        </ul>
+      </div>
+    </div>
+    <div class="card h-20">
+      <div class="card-header">
+        Channels
+      </div>
+      <div class="card-block no-padding">
+        <ul class="list-group" id="channelsList">
+
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-10" id="user-messages">
+
+       <div class="card">
+         <div class="card-header" id="message-box-header"></div>
+        <div class="card-block fluid-container" id="message-box">
+
+        </div>
+        <div class="card-footer">
+             <div class="form-group">
+                    {{!--<textarea class="form-control" rows="4" id="message-input-box"></textarea>--}}
+                    <div id="message-input-box"></div>
+            </div>
+            <div class="form-group" id="chat-box-buttons">
+                <button type="button" class="btn btn-primary pull-right"  onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+      </div>
+  </div>
+  </div>
+</div>
+
+<div class="modal" id="outgoing-call-modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Calling to <span id="calling-to-username"></span></h5>
+      </div>
+      <div class="modal-body text-center">
+        <i class="animated tada infinite fa fa-phone fa-3x"></i>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" onclick="dismissCall()">Dismiss Call</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" id="incoming-call-modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Calling <span id="calling-to-username"></span></h5>
+      </div>
+      <div class="modal-body text-center">
+        <i class="animated tada infinite fa fa-phone fa-3x"></i>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-warning" onclick="rejectCall()">Reject Call</button>
+        &nbsp;
+        <button type="button" class="btn btn-success" onclick="acceptCall()">Accept Call</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="audio-call-streaming-modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Speaking with <span id="calling-to-username"></span></h5>
+      </div>
+      <div class="modal-body row">
+        <div class="col-md-2 col-xs-2">
+          <i class="animated pulse infinite fa fa-phone fa-3x"></i>
+        </div>
+        <div class="col-md-8 col-xs-8">
+          <div class="spinner">
+              <div class="rect1"></div>
+              <div class="rect2"></div>
+              <div class="rect3"></div>
+              <div class="rect4"></div>
+              <div class="rect5"></div>
+            </div>
+        </div>
+        <div class="col-md-2 col-xs-2">
+          <i class="animated pulse infinite fa fa-phone fa-3x"></i>
+        </div>
+        
+        <div class="col-md-12 col-xs-12">
+          <audio id="audio-call-stream" width="100%" height="20" controls></audio>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn" id="microphone-action-btn" onclick="muteCall()">Mute microphone</button>
+        &nbsp;
+        <button type="button" class="btn btn-warning" onclick="endCall()">End Call</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="video-call-streaming-modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Video calling with <span id="calling-to-username"></span></h5>
+      </div>
+      <div class="modal-body row">
+        <div style="position:relative">
+          <video id="remote-video-call-stream"></video>
+          <video id="local-video-call-stream"></video>
+          <div id="remote-users-streams">
+            
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn" id="video-call-action-btn" onclick="pauseVideoCall()">Pause call</button>
+        &nbsp;
+        <button type="button" class="btn" id="microphone-action-btn" onclick="muteCall()">Mute microphone</button>
+        &nbsp;
+        <button type="button" class="btn btn-warning" onclick="endCall()">End Call</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/js/summernote.js"></script>
+<script src="/js/chatScript.js"></script>

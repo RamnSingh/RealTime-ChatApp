@@ -1,0 +1,91 @@
+{{#if error_msg}}
+<div class="alert alert-warning">{{error_msg}}</div>
+{{/if}}
+
+<table class="table table-inverse text-white">
+  <thead>
+    <tr>
+      <th>Group Name</th>
+      <th>Created On</th>
+      <th>Created By</th>
+      <th>Members</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+        {{#each groups}}
+            <tr id="{{_id}}">
+                <td scope="row">{{name}}</td>
+                <td>{{createdOnStr}}</td>
+                <td>
+                  {{#if createdBy.0.profileImage}}
+                  <img src="/profile/image/{{createdBy.0.profileImage}}" width="30" height="30"/>
+                  {{else}}
+                  <i class="fa fa-user" aria-hidden="true"></i>
+                  {{/if}}
+                  &nbsp; {{createdBy.0.username}}
+                </td>
+                <td>
+                  <div class="list-group" style="height: 70px; overflow-y: scroll">
+                    {{#each membersObjects}}
+                    <a href="/user/{{username}}" class="list-group-item list-group-item-action">
+                    <span>
+                      {{#if profileImage}}
+                      <img src="/profile/image/{{profileImage}}" width="30" height="30"/>
+                      {{else}}
+                      <i class="fa fa-user" aria-hidden="true"></i>
+                      {{/if}}
+
+                      {{username}}
+                    </span>
+                    </a>
+                  {{/each}}
+                  </div>
+                  
+                </td>
+                <td>
+                  <div class="btn-group" role="group" aria-label="Basic example">
+                    {{#if isAdmin}}
+                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#manage-member-modal" onclick="manageGroupMembers('{{_id}}', '{{name}}')" id="manage-{{_id}}">Manage members</button>
+                    <button type="button" class="btn btn-danger" onclick="deleteGroup('{{_id}}', '{{name}}')" id="delete-{{_id}}">Delete</button>
+                    {{/if}}
+                    {{#if isMember}}
+                      <button type="button" class="btn" onclick="leaveGroup('{{_id}}', '{{name}}')" id="leave-{{_id}}">Leave</button>
+                    {{/if}}
+                    
+                    
+                  </div>
+                </td>
+            </tr>
+        {{/each}}
+    
+  </tbody>
+</table>
+<!-- Manage Member modal -->
+<div class="modal fade" id="manage-member-modal" tabindex="-1" role="dialog" aria-labelledby="manageMembersModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="manage-member-modal-title"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="manage-member-modal-body">
+        <div class="card">
+          <div class="card-header">
+            Manage Members
+          </div>
+          <div class="card-block" style="height:300px;overflow-y:scroll">
+            <ul class="list-group" id="list-manage-members"></ul>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+</div>
+<script src="/js/groupScript.js"></script>

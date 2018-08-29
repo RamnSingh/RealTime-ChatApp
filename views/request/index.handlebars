@@ -1,0 +1,64 @@
+<div class="container-tight">
+<div class="card border-0">
+  <h3 class="card-header bg-primary text-white">Manage requests</h3>
+  <div class="card-block no-padding">
+    <ul class="list-group">
+        {{#each requests}}
+        
+        <li class="list-group-item list-group-item-action justify-content-between" id="{{_id}}">
+        {{#if requestedBy}}
+              <a class="text-black text-black-hover h3 none" href="/account/{{requestedBy.username}}">
+                {{#if requestedBy.profileImage}}
+                  <img src="/profile/image/{{requestedBy.profileImage}}" width="22" height="32" />
+                {{else}}
+                  <i class="fa fa-user fa-2x"></i>
+                {{/if}}
+                  {{requestedBy.username}}
+              </a>
+              <div role="group">
+                  <button class="btn btn-outline-success" type="button" data-toggle="modal" data-target="#friendRequestAcceptModal" onclick="showFriendRequestAcceptModal('{{_id}}', '{{requestedBy._id}}', '{{requestedBy.username}}')">Accept</button>
+                  <button class="btn btn-outline-danger" type="button" data-toggle="modal" data-target="#friendRequestDenyModal" onclick="showFriendRequestDenyModal('{{_id}}', '{{requestedBy._id}}', '{{requestedBy.username}}')">Deny</button>
+              </div>
+        {{/if}}
+        {{#if requestedTo}}
+              <a class="text-black text-black-hover h3 none" href="/account/{{requestedTo.username}}">
+                  {{#if requestedTo.profileImage}}
+                    <img src="/profile/image/{{requestedTo.profileImage}}" width="22" height="32" />
+                  {{else}}
+                    <i class="fa fa-user fa-2x"></i>
+                  {{/if}}
+                  {{requestedTo.username}}
+              </a>
+              <div role="group">
+                  <button class="btn btn-outline-warning" type="button" data-toggle="modal" data-target="#deleteRequestAcceptModal" onclick="showDeleteRequestModal('{{_id}}', '{{requestedTo._id}}', '{{requestedTo.username}}')">Delete</button>
+                  <button class="btn btn-outline-info" type="button"  disabled="disabled">Pending</button>
+              </div>
+        {{/if}}
+          </li>
+        {{/each}}
+    </ul>
+  </div>
+</div>
+
+</div>
+<!-- Modal for request -->
+<div class="modal fade" tabindex="-1" role="dialog" id="friend-request-modal" aria-labelledby="friendRequestModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirmation</h5>
+        <button type="button add-as-friend-btn" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure, you want to be friends with <span id="would-be-friend-username" class="font-weight-bold"></span> ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="sendFriendRequest()">Yes</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/js/requestScript.js"></script>

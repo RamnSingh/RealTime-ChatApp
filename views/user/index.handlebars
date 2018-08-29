@@ -1,0 +1,56 @@
+<div class="container-tight">
+<div class="card">
+  <h3 class="card-header">Profile {{profile.username}}</h3>
+  <div class="card-block">
+    <div class="row">
+    <div class="col-4">
+      {{#if profile.profileImage}}
+        <img src="/profile/image/{{profile.profileImage}}" width="200px" height="200px" class="img-thumbnail">
+      {{else}}
+      <img src="/images/default_profile_image.png"  width="200px" height="200px" class="img-thumbnail">
+      {{/if}}
+    </div>
+    <div class="col-8">
+      <div class="row">
+        <div class="col">
+          <label>Username</label>
+          <p class="font-weight-bold">{{profile.username}}</p>
+        </div>
+        <div class="col">
+          <label>Fullname</label>
+          <p class="font-weight-bold">{{profile.fullName}}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <label>Date of birth</label>
+          <p class="font-weight-bold">{{profile.dateOfBirth}}</p>
+        </div>
+        <div class="col">
+          <label>From</label>
+          <p class="font-weight-bold">{{profile.location}}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+           <label>About {{profile.username}}</label>
+          <p class="font-weight-bold">
+            {{profile.aboutMe}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div class="card-footer">
+      <div class="row justify-content-end">
+          {{#if profile.isCurrentUser}}
+          <a href="/account/resetpwd" class="btn btn-warning">Reset password</a>&nbsp;
+          <a href="/user/profile/edit/{{profile.username}}" class="btn btn-primary">Edit my profile</a>
+          {{else}}
+          <button class="btn btn-outline-primary" id="add-request-{{profile.username}}" type="button" onclick="showFriendRequestModal('{{profile._id}}', '{{profile.username}}')">Add as friend</button>
+          {{/if}}
+      </div>
+  </div>
+</div>
+</div>

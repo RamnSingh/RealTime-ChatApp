@@ -1,0 +1,20 @@
+{{#if error_msg}}
+<div class="alert alert-danger">{{error_msg}}</div>
+{{/if}}
+<form method="POST" class="form text-white">
+  <div class="form-group">
+    <label for="group-name">Group name</label>
+    <input type="text" name="groupName" class="form-control" id="group-name" placeholder="Enter a group name">
+  </div>
+  <div class="form-group">
+    <label for="group-members">Add participants</label>
+    <select multiple="multiple" name="groupMembers" class="form-control" id="group-members"></select>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-success" id="create-group-btn">Create Group</button>
+  </div>
+</form>
+<script src="/js/groupScript.js"></script>
+<script>
+initCreateGroupForm();
+</script>

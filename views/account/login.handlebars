@@ -1,0 +1,24 @@
+<div class="container-tight">
+  {{#if success_msg}}
+    <div class="alert alert-success">{{success_msg}}</div>
+{{/if}}
+{{#if error}}
+    <div class="alert alert-danger">{{error}}</div>
+{{/if}}
+<form method="POST" action="login" id="register-form" class="form text-white">
+
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input type="text" class="form-control" name="username" id="username" placeholder="Enter a username">
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" name="password" id="password" placeholder="Enter a password">
+  </div>
+  <div class="form-group">
+      <button type="submit" class="btn btn-outline-primary">Login</button>
+  </div>
+
+</form>
+</div>

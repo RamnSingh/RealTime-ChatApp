@@ -1,0 +1,38 @@
+<div class="container-tight">
+  <div class="card border-0">
+  <h3 class="card-header bg-primary text-white">People found for your search</h3>
+  <div class="card-block no-padding">
+    <ul class="list-group">
+        {{#each users}}
+        <li class="list-group-item list-group-item-action justify-content-between" id="{{_id}}">
+           <span>
+                <a class="text-black text-black-hover h3 none" href="/user/{{username}}">
+                    {{#if profileImage}}
+                    <img src="/profile/image/{{profileImage}}" class="img-thumbnail" width="22" height="32" />
+                    {{else}}
+                    <i class="fa fa-user fa-2x"></i>
+                    {{/if}}
+                    &nbsp;
+                    {{username}}
+                </a>
+            </span>
+            <div class="btn-group">
+          {{#if isFriend}}
+              <button class="btn btn-outline-success" id="already-friend-{{username}}" disabled="disabled">Already friend</button>
+          {{else if sentRequest}}
+            <button class="btn btn-outline-success" id="accept-request-{{username}}" onclick="showFriendRequestAcceptModal('{{sentRequest._id}}', '{{_id}}', '{{username}}')">Accept invitation</button>
+            <button class="btn btn-outline-danger" id="deny-request-{{username}}" onclick="showFriendRequestDenyModal('{{sentRequest._id}}', '{{_id}}', '{{username}}')">Deny invitation</button>
+          {{else if recievedRequest}}
+            <button class="btn btn-outline-warning" type="button" data-toggle="modal" onclick="showDeleteRequestModal('{{recievedRequest._id}}', '{{_id}}', '{{username}}')">Delete</button>
+            <button class="btn btn-outline-info" disabled="disabled">Pending</button>
+          {{else}}
+             <button class="btn btn-outline-primary" id="add-request-{{username}}" type="button" onclick="showFriendRequestModal('{{_id}}', '{{username}}')">Add as friend</button>
+          {{/if}}
+          </div>
+        </li>
+        {{/each}}
+    </ul>
+  </div>
+</div>
+</div>
+<script src="/js/requestScript.js"></script>

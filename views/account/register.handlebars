@@ -1,0 +1,41 @@
+<div class="container-tight">
+<h2 class="page-header">Register</h2>
+{{#if errors}}
+    {{#each errors}}
+        <div class="alert alert-danger">{{msg}}</div>
+    {{/each}}
+{{/if}}
+<form method="POST" action="register" id="register-form" class="form text-white">
+
+  <div class="form-group">
+    <label for="fullName">Name</label>
+    <input type="text" class="form-control" name="fullName" id="fullName" placeholder="Enter your full name">
+  </div>
+
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input type="text" class="form-control" name="username" id="username" placeholder="Enter a username">
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email address</label>
+    <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Enter a valid email">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" name="password" id="password" placeholder="Enter a password">
+  </div>
+
+  <div class="form-group">
+    <label for="confirm-password">Confirm password</label>
+    <input type="password" class="form-control" name="confirmPassword" id="confirm-password" placeholder="Please confirm your password">
+  </div>
+
+  <div class="form-group">
+      <button type="submit" class="btn btn-outline-primary">Create account</button>
+  </div>
+
+</form>
+</div>

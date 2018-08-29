@@ -1,0 +1,42 @@
+{
+  "name": "nodejschatapp",
+  "version": "1.0.0",
+  "description": "Chat application built with NodesJs, Socket.io, ExpressJs, PeerJs, Bpptstrap 4 and MongoDb.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "bcryptjs": "*",
+    "body-parser": "*",
+    "bootstrap": "^4.0.0-alpha.6",
+    "connect-flash": "*",
+    "cookie-parser": "*",
+    "cors": "^2.8.3",
+    "express": "*",
+    "express-fileupload": "^0.1.2",
+    "express-handlebars": "*",
+    "express-messages": "*",
+    "express-session": "*",
+    "express-validator": "*",
+    "jquery": "^3.1.1",
+    "mongodb": "^2.2.25",
+    "mongoose": "^4.9.1",
+    "passport": "*",
+    "passport-http": "*",
+    "passport-local": "*",
+    "peer": "^0.2.8",
+    "protip": "^1.4.16",
+    "simple-peer": "^7.0.0",
+    "socket.io": "^1.7.3",
+    "tether": "^1.4.0"
+  },
+  "keywords": [
+    "Chat",
+    "Application",
+    "Authentication"
+  ],
+  "author": "Ramn SINGH",
+  "license": "ISC"
+}
